@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import "./App.css";
+import Toast from "./Toast";
 
 function App() {
+  const [showToast, setShowToast] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowToast(true);
+  };
+
+  const handleToastConfirm = () => {
+    console.log("Toast confirmed.");
+    setShowToast(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="container">
+        <div>
+          <h1>Toast</h1>
+          <p>
+            Notification message or a piece of information displayed above the
+            page content.
+          </p>
+        </div>
+      </div>
+      <div className="button">
+        <button onClick={handleButtonClick}>Click Me</button>
+      </div>
+      {showToast && (
+        <Toast
+          message="This is a Toast message!"
+          onConfirm={handleToastConfirm}
+        />
+      )}
     </div>
   );
 }
